@@ -52,8 +52,8 @@ var rootCmd = &cobra.Command{
 		var wg sync.WaitGroup
 		maxOpenFilesLimitBuffer := make(chan int, maxOpenFileLimit)
 		for _, arg := range args {
-			go worker(arg, &wg, maxOpenFilesLimitBuffer)
 			wg.Add(1)
+			go worker(arg, &wg, maxOpenFilesLimitBuffer)
 		}
 
 		wg.Wait()
